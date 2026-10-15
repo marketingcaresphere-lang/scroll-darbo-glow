@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Cinematic intro lives in src/cinematic/ (config.ts lists all assets/scroll ranges; one rAF loop drives DOM, WebGL dissolve and canvas fx from a single GSAP-scrubbed progress value) — keeps assets swappable and scenes in sync.
+- Homepage portraits use the cinematic asset configuration rather than importing a separate portrait — keeps Darbo's likeness consistent throughout the site.

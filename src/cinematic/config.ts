@@ -1,6 +1,6 @@
 // Single source of truth for cinematic assets. Swap files here without touching scene code.
-import darboHuman from "@/assets/darbo-human.png";
-import darboRobot from "@/assets/darbo-robot.png";
+import darboHuman from "@/assets/darbo-human-matched.png";
+import darboRobot from "@/assets/darbo-full-cyborg.png";
 import commandCenter from "@/assets/command-center.jpg";
 import futureCity from "@/assets/future-city.jpg";
 
