@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Cinematic, StaticIntro } from "@/cinematic/Cinematic";
-import darbo from "@/assets/darbo-human.png";
+import { CINEMATIC_ASSETS } from "@/cinematic/config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,7 +64,7 @@ function Home() {
         </div>
         <div className="relative md:col-span-5">
           <div className="cine-rim absolute inset-0" />
-          <img src={darbo} alt="Darbo, founder of LeadZLoco" width={768} height={1024} loading="lazy" className="relative ml-auto w-full max-w-md" />
+          <img src={CINEMATIC_ASSETS.darboHuman} alt="Darbo, founder of LeadZLoco" width={896} height={1200} loading="lazy" className="relative ml-auto w-full max-w-md" />
         </div>
       </section>
 
