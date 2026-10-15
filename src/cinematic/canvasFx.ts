@@ -38,7 +38,7 @@ export function createFx(canvas: HTMLCanvasElement, lowPower: boolean) {
     const la = (lat * Math.PI) / 180, lo = (lon * Math.PI) / 180;
     return [Math.cos(la) * Math.cos(lo), Math.sin(la), Math.cos(la) * Math.sin(lo)];
   };
-  const arcs = CITIES.flatMap((a, i) => [CITIES[(i * 5 + 3) % CITIES.length], CITIES[(i + 7) % CITIES.length]].map((b) => [ll(...a), ll(...b)] as const));
+  const arcs = CITIES.flatMap((a, i) => [CITIES[(i * 5 + 3) % CITIES.length]!, CITIES[(i + 7) % CITIES.length]!].map((b) => [ll(...a), ll(...b)] as const));
 
   let W = 0, H = 0;
   function size() {
@@ -52,7 +52,7 @@ export function createFx(canvas: HTMLCanvasElement, lowPower: boolean) {
     ctx.globalCompositeOperation = "lighter";
     const count = Math.floor(N * 0.5 * amount);
     for (let i = 0; i < count; i++) {
-      const p = parts[i];
+      const p = parts[i]!;
       p.life += 0.004 + p.s * 0.006;
       if (p.life > 1) { p.life = 0; p.x = rand(-1, 1); p.y = rand(-1, 1); }
       const x = cx + p.x * spread + Math.sin(p.life * 6 + i) * 20 + p.life * 60;
@@ -69,7 +69,7 @@ export function createFx(canvas: HTMLCanvasElement, lowPower: boolean) {
     ctx.globalCompositeOperation = "lighter";
     const count = Math.floor(N * amount);
     for (let i = 0; i < count; i++) {
-      const p = parts[i];
+      const p = parts[i]!;
       const lane = (i % 40) / 40;
       const speed = 0.04 + p.s * 0.08;
       const x = ((p.x + t * speed) % 1.2) - 0.1;
@@ -131,7 +131,7 @@ export function createFx(canvas: HTMLCanvasElement, lowPower: boolean) {
     ctx.lineWidth = 1.2;
     for (let i = 0; i < shown + 1 && i < arcs.length; i++) {
       const frac = i < shown ? 1 : (arcs.length * connect) % 1;
-      const [a, b] = arcs[i];
+      const [a, b] = arcs[i]!;
       ctx.beginPath();
       let started = false;
       const steps = 40;
