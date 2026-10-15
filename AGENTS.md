@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Cinematic intro lives in src/cinematic/ (config.ts lists all assets/scroll ranges; one rAF loop drives DOM, WebGL dissolve and canvas fx from a single GSAP-scrubbed progress value) — keeps assets swappable and scenes in sync.
