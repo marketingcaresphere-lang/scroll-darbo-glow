@@ -21,7 +21,8 @@ export const TOTAL_VH = SCENE_VH.reduce((a, b) => a + b, 0) + FINALE_VH;
 
 const acc = (n: number) => SCENE_VH.slice(0, n).reduce((a, b) => a + b, 0) / TOTAL_VH;
 // Normalised [start, end] of each scene in overall progress.
-export const SCENES = [0, 1, 2, 3].map((i) => [acc(i), acc(i + 1)] as const);
+type Range = readonly [number, number];
+export const SCENES = [0, 1, 2, 3].map((i) => [acc(i), acc(i + 1)] as const) as unknown as readonly [Range, Range, Range, Range];
 export const FINALE: readonly [number, number] = [acc(4), 1];
 
 export const PALETTE = {

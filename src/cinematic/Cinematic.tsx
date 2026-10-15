@@ -6,7 +6,7 @@ import { createFx } from "./canvasFx";
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const seg = (v: number, a: number, b: number) => clamp((v - a) / (b - a));
 const ease = (t: number) => t * t * (3 - 2 * t);
-const local = (p: number, i: number) => seg(p, SCENES[i][0], SCENES[i][1]);
+const local = (p: number, i: number) => seg(p, SCENES[i]![0], SCENES[i]![1]);
 const windowed = (p: number, a: number, b: number, f = 0.018) => Math.min(seg(p, a, a + f), 1 - seg(p, b - f, b));
 
 const SCREENS = Array.from({ length: 14 }, (_, i) => ({
