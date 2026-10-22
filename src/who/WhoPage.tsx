@@ -172,7 +172,7 @@ function WhoScenes() {
         transform: `translate(-50%,-50%) scale(${(1 + 0.08 * Math.sin(t * 2.2)).toFixed(3)})`,
       });
       const tick2 = ease(seg(s2, 0.45, 0.98));
-      const c1 = R.c1, c2 = R.c2, c3 = R.c3;
+      const c1 = R["c1"], c2 = R["c2"], c3 = R["c3"];
       if (c1) c1.textContent = fmt(Math.floor(52480 * tick2));
       if (c2) c2.textContent = fmt(Math.floor(13790 * tick2));
       if (c3) c3.textContent = fmt(Math.floor(20520 * tick2));
@@ -206,7 +206,7 @@ function WhoScenes() {
       st("por", { opacity: String(vis4), transform: `scale(${(1.06 - 0.06 * ease(s4)).toFixed(3)})` });
       const wr = ease(seg(s4, 0.05, 0.55)) - ease(seg(s4, 0.6, 0.95));
       st("wire", { opacity: String(vis4 * (wr > 0.01 ? 0.95 : 0)) });
-      R.wire?.style.setProperty("--wire-r", `${(Math.max(0, wr) * 46).toFixed(1)}vmax`);
+      R["wire"]?.style.setProperty("--wire-r", `${(Math.max(0, wr) * 46).toFixed(1)}vmax`);
       beatRefs.current.forEach((el, i) => {
         if (!el) return;
         const a = 0.12 + i * 0.24, b = a + 0.1, e = a + 0.18, f = e + 0.06;
@@ -218,13 +218,13 @@ function WhoScenes() {
 
       // ---------- Scene 5: How We Work (horizontal) ----------
       const vis5 = seg(p, SCENES[3]![1] - 0.02, SCENES[3]![1] + 0.02) * (1 - seg(p, SCENES[4]![1] - 0.02, SCENES[4]![1]));
-      const track = R.track;
+      const track = R["track"];
       if (track) {
         const over = Math.max(0, track.scrollWidth - window.innerWidth);
         track.style.transform = `translateX(${-ease(seg(s5, 0.03, 0.97)) * over}px)`;
         track.style.opacity = String(vis5);
       }
-      const s5line = R.s5line;
+      const s5line = R["s5line"];
       if (s5line) {
         s5line.style.strokeDashoffset = String(1 - seg(s5, 0.05, 0.92));
         s5line.style.opacity = String(vis5);
