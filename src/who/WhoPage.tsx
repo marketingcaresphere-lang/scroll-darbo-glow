@@ -271,7 +271,7 @@ function WhoScenes() {
             <div
               key={i}
               ref={(el) => { screenRefs.current[i] = el; }}
-              className="cine-screen absolute opacity-0"
+              className="who-scr absolute opacity-0"
               style={{ left: `${s.x * 100}%`, top: `${s.y * 100}%`, width: `${s.w * 100}%`, height: `${s.h * 100}%` }}
             />
           ))}
@@ -300,7 +300,7 @@ function WhoScenes() {
             <path
               key={i}
               ref={(el) => { lineRefs.current[i] = el; }}
-              d={`M ${s.x * 100} ${s.y * 100} Q ${(s.x + CORE.x) * 50} ${Math.min(s.y, CORE.y) * 100 - 7} ${CORE.x * 100} ${CORE.y * 100}`}
+              d={`M ${s.x * 100} ${s.y * 100} Q ${(s.x + CORE.x) * 50} ${((s.y + CORE.y) / 2) * 100 - 3} ${CORE.x * 100} ${CORE.y * 100}`}
               pathLength={1}
               className="cine-thread"
               style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0 }}
@@ -369,7 +369,7 @@ function WhoScenes() {
           <svg className="pointer-events-none absolute inset-x-0 top-[54%] h-[12vh] w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
             <path
               ref={set("s5line") as never}
-              d="M 1 62 C 12 48, 22 66, 34 56 S 58 44, 70 54 S 92 62, 99 50"
+              d="M 1 60 C 22 57, 45 62, 68 58 S 94 57, 99 59"
               pathLength={1}
               className="cine-thread"
               style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0 }}
