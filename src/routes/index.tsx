@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Cinematic, StaticIntro } from "@/cinematic/Cinematic";
 import { CINEMATIC_ASSETS } from "@/cinematic/config";
@@ -51,6 +51,7 @@ function Home() {
           <sup className="logo-tm">™</sup>
         </span>
         <nav className="flex gap-8">
+          <Link to="/who-we-are" className="eyebrow hover:text-foreground">Who we are</Link>
           <a href="#work" className="eyebrow hover:text-foreground">Approach</a>
           <a href="#contact" className="eyebrow hover:text-foreground">Contact</a>
         </nav>
@@ -84,8 +85,9 @@ function Home() {
         <a href="mailto:hello@leadzloco.com" className="hud-btn mt-10 inline-block">Start the conversation</a>
       </section>
 
-      <footer className="flex justify-between border-t border-border px-[6vw] py-8">
+      <footer className="flex flex-wrap gap-4 justify-between border-t border-border px-[6vw] py-8">
         <span className="eyebrow">© LeadZLoco™</span>
+        <Link to="/who-we-are" className="eyebrow hover:text-foreground">Who we are</Link>
         <span className="eyebrow">Technology evolves. Vision remains human.</span>
       </footer>
     </div>

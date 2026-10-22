@@ -143,3 +143,30 @@
 @keyframes loader-flick { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
 @keyframes grain { 0% { transform: translate(0,0) } 25% { transform: translate(-3%,2%) } 50% { transform: translate(2%,-3%) } 75% { transform: translate(-1%,3%) } 100% { transform: translate(0,0) } }
 @media (prefers-reduced-motion: reduce) { .grain, .cine-loader-light { animation: none; } }
+
+/* ---- Who We Are page ---- */
+@layer components {
+  .who-page { height: calc(var(--who-total) * 1vh); }
+  @media (max-width: 768px) { .who-page { height: calc(var(--who-total) * 0.72vh); } }
+
+  .who-grade { background: linear-gradient(115deg, color-mix(in oklab, var(--primary) 14%, transparent), transparent 45%, color-mix(in oklab, var(--gold) 8%, transparent) 90%); mix-blend-mode: soft-light; }
+  .who-spot { background: radial-gradient(ellipse 30% 62% at 38% 40%, color-mix(in oklab, var(--primary) 30%, transparent), transparent 70%); mix-blend-mode: screen; }
+  .who-head { background: oklch(0.02 0.005 255); border-radius: 46% 46% 42% 42%; filter: blur(7px); }
+  .who-fgmask { -webkit-mask-image: linear-gradient(180deg, transparent, black 30%); mask-image: linear-gradient(180deg, transparent, black 30%); }
+  .who-scan { background-image: repeating-linear-gradient(90deg, oklch(1 0 0 / 0.045) 0 1px, transparent 1px 72px); }
+  .who-ring { border-radius: 9999px; border: 1px solid var(--primary); box-shadow: 0 0 14px color-mix(in oklab, var(--primary) 60%, transparent), inset 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent); }
+  .who-core { border-radius: 9999px; background: radial-gradient(circle, oklch(0.95 0.04 240) 0%, color-mix(in oklab, var(--primary) 70%, transparent) 30%, transparent 70%); mix-blend-mode: screen; }
+  .who-seam { background: linear-gradient(180deg, transparent 4%, color-mix(in oklab, var(--primary) 80%, transparent) 25%, oklch(0.95 0.03 240) 50%, color-mix(in oklab, var(--primary) 80%, transparent) 75%, transparent 96%); box-shadow: 0 0 24px color-mix(in oklab, var(--primary) 70%, transparent); }
+  .who-stream { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 55%, transparent) 40%, oklch(0.92 0.05 240)); filter: blur(5px); mix-blend-mode: screen; }
+  .who-sweep { background: linear-gradient(100deg, transparent 34%, color-mix(in oklab, var(--primary) 40%, transparent) 48%, oklch(0.96 0.04 240) 50%, color-mix(in oklab, var(--primary) 40%, transparent) 52%, transparent 66%); mix-blend-mode: screen; filter: blur(2px); }
+  .who-counter { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .who-cta { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stage); background: var(--gold); padding: 0.9rem 1.6rem; transition: background 0.3s, transform 0.3s; display: inline-block; }
+  .who-cta:hover, .who-cta:focus-visible { background: oklch(0.88 0.13 85); transform: translateY(-1px); outline: none; }
+  .who-wire { --wire-r: 0px; -webkit-mask-image: radial-gradient(circle var(--wire-r) at 58% 38%, black 0%, transparent 70%); mask-image: radial-gradient(circle var(--wire-r) at 58% 38%, black 0%, transparent 70%); }
+  .who-bracket { position: absolute; width: 12px; height: 12px; border-color: var(--hud-track); }
+  .s5-t1 { background: radial-gradient(ellipse 60% 50% at 20% 20%, color-mix(in oklab, var(--primary) 14%, transparent), transparent 70%); }
+  .s5-t2 { background: repeating-linear-gradient(0deg, oklch(1 0 0 / 0.05) 0 1px, transparent 1px 56px), repeating-linear-gradient(90deg, oklch(1 0 0 / 0.05) 0 1px, transparent 1px 56px); }
+  .s5-t3 { background: linear-gradient(160deg, transparent 30%, color-mix(in oklab, var(--gold) 16%, transparent) 50%, transparent 70%); }
+  .s5-t4 { background: radial-gradient(ellipse 40% 60% at 80% 80%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%); }
+  .s5-t5 { background: conic-gradient(from 220deg at 30% 30%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 40%); }
+}
