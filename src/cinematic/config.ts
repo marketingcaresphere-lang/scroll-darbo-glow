@@ -1,8 +1,15 @@
 // Single source of truth for cinematic assets. Swap files here without touching scene code.
+// Scene plates are PlateSets (desktop / tablet 4:3 / mobile 4:5 crops of the
+// same composition) so every breakpoint shows the full scene — see PlateImg.
+import { plate } from "@/components/PlateImg";
 import darboHuman from "@/assets/darbo-human-matched.png";
 import darboRobot from "@/assets/darbo-full-cyborg.png";
-import commandCenter from "@/assets/command-center.jpg";
-import futureCity from "@/assets/future-city.jpg";
+import commandCenterD from "@/assets/command-center.jpg";
+import commandCenterT from "@/assets/command-center-t4x3.jpg";
+import commandCenterM from "@/assets/command-center-m4x5.jpg";
+import futureCityD from "@/assets/future-city.jpg";
+import futureCityT from "@/assets/future-city-t4x3.jpg";
+import futureCityM from "@/assets/future-city-m4x5.jpg";
 
 export const CINEMATIC_ASSETS = {
   darboHuman,
@@ -10,8 +17,8 @@ export const CINEMATIC_ASSETS = {
   // Body-part masks are generated procedurally in the dissolve shader until
   // real grayscale mask maps (mask-hand/arm/chest/face) are supplied.
   masks: null as null | { hand: string; arm: string; chest: string; face: string },
-  commandCenter,
-  futureCity,
+  commandCenter: plate(commandCenterD, commandCenterT, commandCenterM, 1920 / 1088),
+  futureCity: plate(futureCityD, futureCityT, futureCityM, 1920 / 1088),
 };
 
 // Scroll budget in vh: four scenes + finale.

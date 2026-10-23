@@ -1,22 +1,44 @@
 // Single source of truth for the Who We Are page.
 //
-// IMAGE SLOTS — the comment on each import names the scene(s) that consume
-// the plate. To replace a plate, swap the file at the same path; no scene
-// code needs to change. All plates are graded toward the site palette
-// (near-black / electric blue / gold; red only on Darbo's glasses).
-import darboPortrait from "@/assets/who/darbo-portrait.jpg"; // IMAGE SLOT: Scene 4 — half-wireframe portrait, clean
-import stageDarbo from "@/assets/who/stage-darbo-full.jpg"; // IMAGE SLOT: Scenes 1 & 3 — Darbo full length on stage (screens text-free)
-import robotFloor from "@/assets/who/robot-callcenter.jpg"; // IMAGE SLOT: Scenes 2 & 3 — rows of robots at workstations (text-free)
-import robotsHandoff from "@/assets/who/robots-handoff.jpg"; // IMAGE SLOT: Scene 3 — cutaway: two robots passing a glowing chip
-import commandCenter from "@/assets/command-center.jpg"; // IMAGE SLOT: Scene 6 — leaders at a holographic command room (existing plate)
+// IMAGE SLOTS — the comment on each plate names the scene(s) that consume it.
+// To replace a plate, swap the file at the same path; no scene code changes.
+// Every plate is a PlateSet: desktop (d), tablet 4:3 (t) and mobile 4:5 (m)
+// crops of the same composition, all showing the full subject. The crops are
+// switched with <picture> in PlateImg — never by CSS scaling.
+import { plate, type PlateSet } from "@/components/PlateImg";
+import darboPortraitD from "@/assets/who/darbo-portrait.jpg"; // IMAGE SLOT: Scene 4 — half-wireframe portrait, clean
+import darboPortraitT from "@/assets/who/darbo-portrait-t4x3.jpg";
+import darboPortraitM from "@/assets/who/darbo-portrait-m4x5.jpg";
+import stageDarboD from "@/assets/who/stage-darbo-full.jpg"; // IMAGE SLOT: Scenes 1 & 3 — Darbo full length on stage (screens text-free)
+import stageDarboT from "@/assets/who/stage-darbo-full-t4x3.jpg";
+import stageDarboM from "@/assets/who/stage-darbo-full-m4x5.jpg";
+import robotFloorD from "@/assets/who/robot-callcenter.jpg"; // IMAGE SLOT: Scenes 2 & 3 — rows of robots at workstations (text-free)
+import robotFloorT from "@/assets/who/robot-callcenter-t4x3.jpg";
+import robotFloorM from "@/assets/who/robot-callcenter-m4x5.jpg";
+import robotsHandoffD from "@/assets/who/robots-handoff.jpg"; // IMAGE SLOT: Scene 3 — cutaway: two robots passing a glowing chip
+import robotsHandoffT from "@/assets/who/robots-handoff-t4x3.jpg";
+import robotsHandoffM from "@/assets/who/robots-handoff-m4x5.jpg";
+import commandCenterD from "@/assets/command-center.jpg"; // IMAGE SLOT: Scene 6 — leaders at a holographic command room
+import commandCenterT from "@/assets/command-center-t4x3.jpg";
+import commandCenterM from "@/assets/command-center-m4x5.jpg";
 
 export const WHO_ASSETS = {
-  darboPortrait,
-  stageDarbo,
-  robotFloor,
-  robotsHandoff,
-  commandCenter,
-};
+  darboPortrait: plate(darboPortraitD, darboPortraitT, darboPortraitM, 1),
+  stageDarbo: plate(stageDarboD, stageDarboT, stageDarboM, 1),
+  robotFloor: plate(robotFloorD, robotFloorT, robotFloorM, 1),
+  robotsHandoff: plate(robotsHandoffD, robotsHandoffT, robotsHandoffM, 1),
+  commandCenter: plate(commandCenterD, commandCenterT, commandCenterM, 1920 / 1088),
+} satisfies Record<string, PlateSet>;
+
+// Focal point of each plate (fractions of the image frame). Push-ins origin
+// here and headlines keep to the safe zones away from it.
+export const FOCAL = {
+  stage: { x: 0.46, y: 0.4 },
+  robotFloor: { x: 0.5, y: 0.55 },
+  robotsHandoff: { x: 0.5, y: 0.55 },
+  darboPortrait: { x: 0.5, y: 0.4 },
+  commandCenter: { x: 0.5, y: 0.45 },
+} as const;
 
 // Scroll budget in vh: 1 Voice, 2 Floor, 3 Connection, 4 Person, 5 How we work, 6 Invitation.
 export const SCENE_VH = [180, 200, 150, 120, 120, 60] as const;
@@ -34,8 +56,10 @@ export const SCENES = [0, 1, 2, 3, 4, 5].map((i) => [acc(i), acc(i + 1)] as Rang
   Range,
 ];
 
-// Workstation coordinates on the robot-floor plate (fractions of the frame).
-// Drive the headset rings, connection lines and travelling particles in Scene 2.
+// Workstation coordinates on the robot-floor plate (fractions of the image
+// frame). The page maps them onto the plate's on-screen rectangle every frame
+// (see plateRect in WhoPage), so rings, lines and particles stay glued to the
+// picture at every breakpoint and push-in.
 export const STATIONS = [
   { x: 0.1, y: 0.46 },
   { x: 0.17, y: 0.6 },
@@ -47,10 +71,11 @@ export const STATIONS = [
   { x: 0.67, y: 0.36 },
 ] as const;
 
-// Glowing hub the workstation lines converge on (Scene 2).
+// Glowing hub the workstation lines converge on (Scene 2, image frame).
 export const CORE = { x: 0.5, y: 0.4 } as const;
 
-// Screen-glow areas on the stage plate (fractions) that ignite during Scene 1.
+// Screen-glow areas on the stage plate (fractions of the image frame) that
+// ignite during Scene 1.
 export const STAGE_SCREENS = [
   { x: 0.01, y: 0.2, w: 0.29, h: 0.34 },
   { x: 0.55, y: 0.24, w: 0.19, h: 0.28 },
