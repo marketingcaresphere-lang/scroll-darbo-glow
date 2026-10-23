@@ -170,4 +170,13 @@
   .s5-t3 { background: linear-gradient(180deg, transparent 70%, color-mix(in oklab, var(--gold) 20%, transparent) 96%); }
   .s5-t4 { background: radial-gradient(ellipse 22% 30% at 85% 10%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 70%); }
   .s5-t5 { background: linear-gradient(0deg, color-mix(in oklab, var(--primary) 10%, transparent), transparent 45%); }
+
+  /* Full-height image plates: the picture is sized to the viewport height and
+     centered; a blurred copy of the same image extends the sides. Under
+     1024px the picture fits the viewport width instead (no zoom-in crop). */
+  .plate { display: flex; align-items: center; justify-content: center; will-change: transform, opacity; }
+  .plate picture { display: contents; }
+  .plate-bg { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; filter: blur(28px) brightness(0.45) saturate(1.05); }
+  .plate-img { position: relative; height: 100%; width: auto; max-width: none; box-shadow: 0 0 140px oklch(0.02 0.01 255 / 0.85); }
+  @media (max-width: 1023px) { .plate-img { width: 100%; height: auto; } }
 }
